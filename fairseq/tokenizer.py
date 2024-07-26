@@ -16,8 +16,8 @@ def tokenize_line(line):
     # return line.split()
     # 注意
     # choose=1
-    # choose=2
-    choose=3
+    choose=2 # pb-dsr
+    # choose=3
     if choose==1: # sn
         return line.split()# 此处根据空格切分之后是单词，单词怎么可能映射到词典呢？可能，修改词典对应即可
     elif choose==2: # word asr 或 kws

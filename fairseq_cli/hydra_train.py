@@ -115,10 +115,3 @@ def cli_main():
 
 if __name__ == "__main__":
     cli_main()
-
-"""
-wsy:
-报错 Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.时，就先在命令行输入：export HYDRA_FULL_ERROR=1，然后再调试就可以看到完整的报错track了
-报错：hydra.errors.MissingConfigException: Could not load _self_
-解决：pip install --upgrade hydra-core
-"""

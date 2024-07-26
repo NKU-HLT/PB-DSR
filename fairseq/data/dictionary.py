@@ -332,18 +332,7 @@ class Dictionary:
                 idx = self.index(word)
                 #---------wsy add--------------------------------------------------------------------------------------------
                 if idx==3: # 注意 还有词典设置
-                    # # if word in [" ",",",'-']:
-                    # if word==" ":
-                        # idx=0 # 1：<pad> ，将unk变成空格有利于计算wer，不是，这只是将空格变成pad（调试发现空格是切分两个样本转录的，所以后续进行pad的实验需要做）
-                    # # elif word in [".",'?',';','!']:
-                    # #     idx=2 # </s>
-                    # #     if word==";" and i!= nwords-1: 
-                    # #         idx=1
-                    # elif hp.record_oov: # 训练的时候不记录
-                    #     with open(os.path.join(hp.oov_dir,"oov.txt"),'a') as f:
-                    #         f.write(word+"\n")
-                    # else:
-                        print("oov:",word) # 查看oov的情况
+                    print("oov:",word) # 查看oov的情况
                 #-------------------------------------------------------------------------------------------------------------
             if consumer is not None:
                 consumer(word, idx)

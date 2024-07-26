@@ -542,7 +542,7 @@ def compute_mask_indices(
         if len(step2) >=sz:
             a=1
         #-------------------------------------------------------------------------
-        if len(mask_idc) >= sz: # wsy(1)尝试直接去掉看是否会有影响，没有影响。有影响，目前报错了
+        if len(mask_idc) >= sz: 
             # a=1
             raise ValueError(
                 (

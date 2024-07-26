@@ -5,9 +5,7 @@ task="s2st"
 ## asr记录oov
 # record_oov=True
 record_oov=False
-# oov_dir="/home/wangshiyao/wangshiyao_space/fairseq/wsy/training_log/4.1_allman/result/valid"
-# oov_dir="/home/wangshiyao/wangshiyao_space/fairseq/wsy/training_log/4.1_allman/result/test"
-oov_dir="/home/wangshiyao/wangshiyao_space/fairseq/wsy/training_log/4.1_allman/result/train"
+oov_dir="oov_dir"
 
 ## 数据增强相关
 # 注意
@@ -21,12 +19,12 @@ aug_choose=1 # wavaugment：pitch+混响
 # use_cl_loss=True
 use_cl_loss=False
 
-## knn相关
+## pb-dsr相关
 # 注意
 # prepare_datastore=True
 prepare_datastore=False
-# o_datastore_dir="/home/wangshiyao/wangshiyao_space/fairseq/wsy/totest/ftm2.28_2/6.12_lrdwws_dcnotts_m2.28_31ft_crossentry+wavaugment1/datastore"
-o_datastore_dir="/home/wangshiyao/wangshiyao_space/fairseq/wsy/totest/ftm2.28_2/6.12_lrdwws_dcnotts_m2.28_31ft_crossentry+wavaugment1/testpkl"
+# o_datastore_dir="datastore_dir"
+o_datastore_dir="testpkl_dir"
 if prepare_datastore and (not os.path.exists(o_datastore_dir)):
     os.makedirs(o_datastore_dir)
 # 注意

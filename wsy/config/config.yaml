@@ -9,11 +9,7 @@ task:
     - ltr
 
   # 注意 这个目录下需要准备test.unit(与tsv中数据数量一致)
-  # data: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/torgo/merge_array_syn_train
-  # data: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/torgo/train
-  # data: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/torgo/test/merge
-  # data: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/torgo/test/wav_arrayMic
-  data: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/cdsd
+  data: /path/your_data_dir
   normalize: false
 
 decoding:
@@ -32,13 +28,8 @@ decoding:
   type: viterbi
   unique_wer_file: true
   
-  # 注意 knn要用下面这个！！！
-  # results_path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/totest
-  # results_path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/totest/7.23_cdsd_baseline/result/train
-  # results_path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/totest/7.23_cdsd_baseline/result/valid
-  # results_path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/totest/7.23_cdsd_baseline/result/array_train
-  results_path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/totest/7.23_cdsd_baseline/result/test
-  # results_path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/totest/7.23_cdsd_baseline/result/array_test
+  # 注意 
+  results_path: /result_dir
 common:
   _name: null
   no_progress_bar: false
@@ -81,9 +72,9 @@ common:
 common_eval:
   _name: null
   # 是best.pt还是last.pt
-  # path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/totest/7.23_cdsd_baseline/checkpoints/checkpoint_last.pt
-  path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/totest/7.23_cdsd_baseline/checkpoints/checkpoint_best.pt
-  results_path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/totest/7.23_cdsd_baseline/result
+  # path: /yourpath/checkpoint_last.pt
+  path: /yourpath/checkpoint_best.pt
+  results_path: /yourpath/result
 
   post_process: none
   quiet: true

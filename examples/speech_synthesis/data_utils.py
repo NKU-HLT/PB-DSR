@@ -226,7 +226,7 @@ def ipa_phonemize(text, lang="en-us", use_g2p=False):
         try:
             from g2p_en import G2p
             g2p = G2p()
-            return " ".join("|" if p == " " else p for p in g2p(text)) # wsy: 此处可能需要修改为下方的代码
+            return " ".join("|" if p == " " else p for p in g2p(text)) 
             # return " ".join([{",": "sp", ";": "sp"," ":"|"}.get(p, p) for p in g2p(text)]) 
         except ImportError:
             raise ImportError(

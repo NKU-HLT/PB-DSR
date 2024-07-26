@@ -209,18 +209,18 @@ class CtcCriterion(FairseqCriterion):
                 loss=loss1+loss2
             #------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-            #--------wsy add------------------
+            #--------wsy add------------------------------------------------------------------------------------------------------------------------------
             if hp.use_cl_loss:
                 hubert_feature=net_output["hubert_feature"].transpose(0,1) # [97,101,768] B T F
-                hubert_feature=F.normalize(hubert_feature, p=2.0, dim=-1, eps=1e-12, out=None) # 在f维度做L2归一化，真的做完归一化就不是nan了！！！！
-                mask = ~net_output["encoder_padding_mask"] # 全是false应该不太合理吧？调整pad为true之后，返回还是全部是false
+                hubert_feature=F.normalize(hubert_feature, p=2.0, dim=-1, eps=1e-12, out=None) 
+                mask = ~net_output["encoder_padding_mask"] 
                 features = [torch.mean(seq[m], dim=0) for seq, m in zip(hubert_feature, mask)] # 这样的效果是会只取出mask为真的部分
                 hubert_feature=torch.stack(features)
                 cl_loss=self.cl_loss(hubert_feature.unsqueeze(1),targets_flat) # 354, 354, 354, 354,  85,  85,  85, 354, 354,  85；2.1561，正例多负例少，则loss小
                     
                 # 注意
                 loss+=cl_loss
-            #----------------------------------
+            #-------------------------------------------------------------------------------------------------------------------------------------------------
 
         ntokens = (
             sample["ntokens"] if "ntokens" in sample else target_lengths.sum().item()

@@ -341,9 +341,7 @@ class HubertEncoder(FairseqEncoder):
         }
         #----wsy add---------------------------------------------------------------------------
         # 注意 ssl模型的路径
-        cfg.w2v_path="/home/wangshiyao/wangshiyao_space/fairseq/wsy/private/dm/chinese-hubert-base.pt" 
-        # cfg.w2v_path="/home/wangshiyao/wangshiyao_space/fairseq/wsy/private/dm/chinese-hubert-large.pt"
-        # cfg.w2v_path="/home/wangshiyao/wangshiyao_space/fairseq/wsy/private/dm/hubert_base_ls960.pt"
+        cfg.w2v_path="your_ssl_model_path" 
         #-------------------------------------------------------------------------------------
         if cfg.w2v_args is None:
             state = checkpoint_utils.load_checkpoint_to_cpu(cfg.w2v_path, arg_overrides)
@@ -424,17 +422,8 @@ class HubertEncoder(FairseqEncoder):
         x = self.final_dropout(x)
 
         #------wsy add----------------------------
-        # if hp.prepare_datastore:
-        #     self.proj=None # x：[449,1,768] T,B,F
         if hp.knn_aug  or hp.prepare_datastore or hp.use_cl_loss:
             tmp_x=x # [147,1,768]
-        # if hp.use_cl_loss: # T,B,F-> B,F,T
-        #     if hp.cl_choose==3:
-        #         tmp_x=self.cl_line(x) 
-        #     elif hp.cl_choose==4:
-        #         tmp_x=self.cl_line(x.transpose(0,1).transpose(1,2).contiguous()).transpose(0,1).transpose(0,2).contiguous()
-        #     else:
-        #         tmp_x=x # hubert feature
         #----------------------------------------
         if self.proj:
             x = self.proj(x)

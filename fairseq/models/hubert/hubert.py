@@ -343,10 +343,6 @@ class HubertModel(BaseFairseqModel):
 
     def apply_mask(self, x, padding_mask, target_list):
         B, T, C = x.shape
-        #----wsy for debug----
-        if T==7: 
-            a=1 # x.size() torch.Size([25, 7, 768])
-        #---------------------
         if self.mask_prob > 0:
             mask_indices = compute_mask_indices(
                 (B, T),
@@ -451,15 +447,7 @@ class HubertModel(BaseFairseqModel):
         features_pen = features.float().pow(2).mean()
 
         features = features.transpose(1, 2)
-        #-----wsy for debug------
-        if features.size(1)==7:
-            a=1
-        #-----------------
         features = self.layer_norm(features)
-        #-----wsy for debug------
-        if features.size(1)==7:
-            a=1
-        #-----------------
         unmasked_features = features.clone()
 
         if padding_mask is not None:
@@ -467,15 +455,7 @@ class HubertModel(BaseFairseqModel):
 
         if self.post_extract_proj is not None:
             features = self.post_extract_proj(features)
-        #-----wsy for debug------
-        if features.size(1)==7:
-            a=1
-        #-----------------
         features = self.dropout_input(features)
-        #-----wsy for debug------
-        if features.size(1)==7:
-            a=1
-        #-----------------
         unmasked_features = self.dropout_features(unmasked_features)
 
         if mask:

@@ -13,7 +13,6 @@ import sys
 #----------wsy add----------------------------------------------------------------------------------------------------
 sys.path.append("/home/wangshiyao/wangshiyao_space/fairseq/")
 os.environ["CUDA_VISIBLE_DEVICES"] = "2"  # 注意
-# 启动多个进程除了是num_worker的原因，还可能是ddp的原因，还要修改配置文件中的distributed_world_size和 distributed_num_procs
 #----------------------------------------------------------------------------------------------------------------------
 import re
 from dataclasses import dataclass, field, is_dataclass
@@ -132,7 +131,7 @@ class InferenceProcessor:
             self.cfg.dataset.gen_subset = re.sub('^[\w-]+:', saved_cfg['task']['multi_corpus_keys']+":", self.cfg.dataset.gen_subset)
         self.models = models
         self.saved_cfg = saved_cfg
-        self.tgt_dict = self.task.target_dictionary # wsy：3对应的是unk，所以全是3的target肯定是不对的 aishell (4234)
+        self.tgt_dict = self.task.target_dictionary 
 
         self.task.load_dataset(
             self.cfg.dataset.gen_subset,
@@ -434,7 +433,7 @@ def main(cfg: InferConfig) -> float:
         #-----wsy fix---------------------
         # wer = errs_t * 100.0 / leng_t
         if leng_t == 0:
-            print("knn")
+            print("pb-dsr")
             exit()
         else:
             wer = errs_t * 100.0 / leng_t

@@ -22,24 +22,7 @@ def get_parser():
         # "root", 
         "--root", 
         # 注意:
-        # default="/home/wangshiyao/wangshiyao_space/LRDWWS/test-b/eval/wav/DM0041",
-        # default="/home/wangshiyao/wangshiyao_space/TOGRO",
-        # default="/home/wangshiyao/wangshiyao_space/vits/wsy/torgo_syn/remove0",
-        # default="/home/wangshiyao/wangshiyao_space/vits/wsy/torgo_syn/remove1",
-        # default="/home/wangshiyao/wangshiyao_space/vits/wsy/torgo_syn/remove2",
-        # default="/home/wangshiyao/wangshiyao_space/vits/wsy/torgo_syn/remove3",
-        # default="/home/wangshiyao/wangshiyao_space/vits/wsy/torgo_syn/remove4",
-        # default="/home/wangshiyao/wangshiyao_space/vits/wsy/torgo_syn/remove5",
-        # default="/home/wangshiyao/wangshiyao_space/vits/wsy/torgo_syn/remove6",
-        # default="/home/wangshiyao/wangshiyao_space/vits/wsy/torgo_syn/remove7",
-        # default="/home/wangshiyao/wangshiyao_space/vits/wsy/torgo_syn/remove8",
-        # default="/home/wangshiyao/wangshiyao_space/vits/wsy/torgo_syn/remove9",
-        # default="/home/wangshiyao/wangshiyao_space/vits/wsy/torgo_syn/remove10",
-        # default="/home/wangshiyao/wangshiyao_space/vits/wsy/torgo_syn/remove11",
-        # default="/home/wangshiyao/wangshiyao_space/vits/wsy/torgo_syn/remove12",
-        # default="/home/wangshiyao/wangshiyao_space/vits/wsy/torgo_syn/remove13",
-        # default="/home/wangshiyao/wangshiyao_space/vits/wsy/torgo_syn/remove14",
-        default="/home/wangshiyao/wangshiyao_space/dataset/cdsd_cutting/Audio",
+        default="",
         #-----------------------------------------------------------------------------
         metavar="DIR", help="root directory containing flac files to index"
     )
@@ -59,10 +42,7 @@ def get_parser():
         "--dest", 
         #--wsy fix----------------------------------------------------------------------
         # 注意：
-        # default="/home/wangshiyao/wangshiyao_space/fairseq/wsy/data/lrdwwk/eval",
-        # default="/home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/torgo",
-        # default="/home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/torgo/syn",
-        default="/home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/cdsd",
+        default="",
         #------------------------------------------------------------------------------
         type=str, metavar="DIR", help="output directory"
     )
@@ -107,29 +87,11 @@ def main(args):
         if valid_f is not None:
             print(dir_path, file=valid_f)
 
-        #-------wsy add for torgo-------------------------------------------------------
-        bad_files=[
-                "/llm/nankai/wangshiyao_space/TOGRO/F01/Session1/wav_headMic/0068.wav",
-                "/llm/nankai/wangshiyao_space/TOGRO/F01/Session1/wav_headMic/0067.wav",
-                ]
-        count=0
-        #----------------------------------------------------------------------------------
         for fname in glob.iglob(search_path, recursive=True):
             file_path = os.path.realpath(fname)
 
             if args.path_must_contain and args.path_must_contain not in file_path:
                 continue
-            #------wsy add for torgo-----------
-            # if "wav_arrayMic" not in fname:
-            #     continue
-            # if "wav_headMic"not in fname:
-            #     continue
-            # elif fname in bad_files:
-            #     continue
-            count+=1
-            if count%100==0:
-                print(count)
-            #----------------------------------------------------------------------------------
             frames = soundfile.info(fname).frames
             dest = train_f if rand.random() > args.valid_percent else valid_f
             print(

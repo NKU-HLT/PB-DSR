@@ -248,11 +248,6 @@ class HubertDataset(FairseqDataset):
             wav, cur_sample_rate = sf.read(f)
         wav = torch.from_numpy(wav).float()
         wav = self.postprocess(wav, cur_sample_rate)
-        #--------wsy fix--------------
-        if wav.size(0)<=2400:
-            a=1
-            print("wav.size(0)<=2400",wav_path)
-        #------------------------------
         return wav
 
     def get_label(self, index, label_idx):
@@ -302,15 +297,7 @@ class HubertDataset(FairseqDataset):
         if hp.addwavaug: # 注意：
             if hp.aug_choose==1:
                 tmp=[self.combination.apply(s,src_info={'rate': self.sr},target_info={'rate': self.sr}).squeeze() for s in audios]
-                # tmp2=[]
-                # for x in tmp:
-                #     noise_generator = lambda: torch.zeros_like(x).uniform_()
-                #     tmp2.append(augment.EffectChain().additive_noise(noise_generator, snr=15).apply(x, src_info={'rate': self.sr}).squeeze())
-                # # audios=tmp2
-                # audios.extend(tmp2) # 合并两个list
-                # label也需要extend自身：见下方
-                # print("wavaugment")
-                audios.extend(tmp) # 去掉噪声
+                audios.extend(tmp) 
             elif hp.aug_choose==2: # 相当于是所有样本都做速度扰动，还可以根据label判断，只对关键词做速度扰动？但感觉都做比较好
                 tmp=self.speed_perturb(audios)
                 audios.extend(tmp)
