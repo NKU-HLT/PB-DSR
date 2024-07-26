@@ -28,15 +28,11 @@ task:
   _name: hubert_pretraining
   
   # tsv 根目录 注意
-  # data: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/torgo/train
-  # data: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/torgo/merge_array_syn_train
-  data: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/cdsd
+  data: /your/data_dir
   fine_tuning: true
   
   # ltr/unit 根目录
-  # label_dir: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/torgo/train
-  # label_dir: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/torgo/merge_array_syn_train
-  label_dir: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/cdsd
+  label_dir: /your/label_dir
   normalize: false  # must be consistent with pre-training
 
   # 任务选择
@@ -48,8 +44,6 @@ task:
 dataset:
   # num_workers: 0
   num_workers: 4 # wsy fix 增加占用显存的地方 
-  # num_workers: 8 # for allsub
-  # num_workers: 16 # for allman, alldata
 
   max_tokens: 3200000
   validate_after_updates: ${model.freeze_finetune_updates}
@@ -57,38 +51,7 @@ dataset:
   validate_interval: 5
   # validate_interval: 100
 
-  # 设置tsv名字的地方
-  # train_subset: removeone_0
-  # valid_subset: removeone_0_v
-  # train_subset: removeone_1
-  # valid_subset: removeone_1_v
-  # train_subset: removeone_2
-  # valid_subset: removeone_2_v
-  # train_subset: removeone_3
-  # valid_subset: removeone_3_v
-  # train_subset: removeone_4
-  # valid_subset: removeone_4_v
-  # train_subset: removeone_5
-  # valid_subset: removeone_5_v
-  # train_subset: removeone_6
-  # valid_subset: removeone_6_v
-  # train_subset: removeone_7
-  # valid_subset: removeone_7_v
-  # train_subset: removeone_8
-  # valid_subset: removeone_8_v
-  # train_subset: removeone_9
-  # valid_subset: removeone_9_v
-  # train_subset: removeone_10
-  # valid_subset: removeone_10_v
-  # train_subset: removeone_11
-  # valid_subset: removeone_11_v
-  # train_subset: removeone_12
-  # valid_subset: removeone_12_v
-  # train_subset: removeone_13
-  # valid_subset: removeone_13_v
-  # train_subset: removeone_14
-  # valid_subset: removeone_14_v
-
+  # wsy:设置tsv名字的地方
   # 注意
   train_subset: train
   valid_subset: valid
@@ -130,10 +93,8 @@ model:
   _name: hubert_ctc
   
   # 使用的预训练hubert模型 注意
-  w2v_path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/dm/chinese-hubert-base.pt
-  # w2v_path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/dm/chinese-hubert-large.pt
-  # w2v_path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/dm/hubert_base_ls960.pt
-  
+  w2v_path: /your/pretrain_hubert_path
+
   apply_mask: true
   mask_selection: static
   mask_length: 10
@@ -167,9 +128,8 @@ hydra:
           - criterion.wer_lexicon
     config_name: "base_10h" # wsy add
   run:
-    # 注意
-    dir: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/training_log/7.23_cdsd_baseline
-
+    # 注意 放置ckpt和log的地方
+    dir: /your/checkpoints_dir
   sweep:
     dir: /home/wangshiyao/wangshiyao_space/fairseq/checkpoints
     subdir: ${hydra.job.config_name}__${hydra.job.override_dirname}

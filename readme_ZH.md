@@ -11,7 +11,7 @@ pip install -r requirements.txt
 ## 训练
 1. 将本目录下“/home/wangshiyao/wangshiyao_space/fairseq”替换为您的路径
 2. 根据需要修改“examples/hubert/config/finetune/base_10h.yaml”中的参数，尤其注意标注了“注意”的地方，需要修改为您的实际路径或下载模型
-3. 训练指令：python fairseq_cli/hydra_train.py --config-dir /home/wangshiyao/wangshiyao_space/fairseq/examples/hubert/config/finetune --config-name base_10h task.data=/home/wangshiyao/wangshiyao_space/fairseq/wsy/data/lrdwwk task.label_dir=/home/wangshiyao/wangshiyao_space/fairseq/wsy/data/lrdwwk model.w2v_path=/home/wangshiyao/wangshiyao_space/fairseq/wsy/dm/chinese-hubert-base.pt >> wsy/training_log/
+3. 训练指令：python fairseq_cli/hydra_train.py --config-dir /home/wangshiyao/wangshiyao_space/fairseq/examples/hubert/config/finetune --config-name base_10h task.data=[YOUR data_dir] task.label_dir=[YOUR label_dir] model.w2v_path=[hubert path]
 (注意，指令中的路径需要修改为您的实际路径)
 
 ## 推理
@@ -26,6 +26,5 @@ pip install -r requirements.txt
 3. 如果本仓库对您的学习有帮助，可以star鼓励一下，谢谢：）
 
 # Citation
-1. 论文：
-    1. 论文目前已提交到arxiv，7.29会公开。欢迎引用
-2. 感谢fairseq仓库
+1. 论文：论文目前已提交到arxiv，7.29会公开。欢迎引用
+2. 感谢[fairseq](https://github.com/facebookresearch/fairseq)仓库.
