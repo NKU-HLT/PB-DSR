@@ -8,7 +8,7 @@ import logging
 import os
 #-----wsy add-------------------------------------------------
 import sys
-sys.path.append("/home/wangshiyao/wangshiyao_space/fairseq/")
+sys.path.append("[PB-DSR DIR]/")
 os.environ["CUDA_VISIBLE_DEVICES"] = "3" # 注意 
 import warnings
 warnings.filterwarnings('ignore')
@@ -34,11 +34,11 @@ def hydra_main(cfg: FairseqConfig) -> float:
 def _hydra_main(cfg: FairseqConfig, **kwargs) -> float:
     #------wsy add-------------------------------------------------------------------------------------------------
     # # 注意： 这里是debug需要的：（实际使用指令训练时需要注释掉
-    # cfg1 = OmegaConf.load("/home/wangshiyao/wangshiyao_space/fairseq/examples/hubert/config/finetune/base_10h.yaml")
-    # # cfg2 = OmegaConf.load("/home/wangshiyao/wangshiyao_space/fairseq/.hydra/config.yaml")
+    # cfg1 = OmegaConf.load("[PB-DSR DIR]/examples/hubert/config/finetune/base_10h.yaml")
+    # # cfg2 = OmegaConf.load("[PB-DSR DIR]/.hydra/config.yaml")
 
-    # cfg2=OmegaConf.load("/home/wangshiyao/wangshiyao_space/fairseq/wsy/private/training_log/7.23_cdsd_baseline/.hydra/config.yaml") # 使用这个可以解决model的问题
-    # cfg3=OmegaConf.load("/home/wangshiyao/wangshiyao_space/fairseq/wsy/private/training_log/7.23_cdsd_baseline/.hydra/hydra.yaml")
+    # cfg2=OmegaConf.load("[PB-DSR DIR]/wsy/private/training_log/7.23_cdsd_baseline/.hydra/config.yaml") # 使用这个可以解决model的问题
+    # cfg3=OmegaConf.load("[PB-DSR DIR]/wsy/private/training_log/7.23_cdsd_baseline/.hydra/hydra.yaml")
 
     # cfg = OmegaConf.merge(cfg2,cfg1,cfg3)
     # cfg.optimization.stop_min_lr=-1.0

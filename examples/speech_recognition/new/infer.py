@@ -11,7 +11,7 @@ import os
 import shutil
 import sys
 #----------wsy add----------------------------------------------------------------------------------------------------
-sys.path.append("/home/wangshiyao/wangshiyao_space/fairseq/")
+sys.path.append("[PB-DSR DIR]/")
 os.environ["CUDA_VISIBLE_DEVICES"] = "2"  # 注意
 #----------------------------------------------------------------------------------------------------------------------
 import re
@@ -455,11 +455,11 @@ def main(cfg: InferConfig) -> float:
 @hydra.main(config_path=config_path, config_name="infer")
 def hydra_main(cfg: InferConfig) -> Union[float, Tuple[float, Optional[float]]]:
     #----wsy add----------------------------------------------------------------------------
-    cfg=OmegaConf.load("/home/wangshiyao/wangshiyao_space/fairseq/wsy/config/config.yaml")
+    cfg=OmegaConf.load("[PB-DSR DIR]/wsy/config/config.yaml")
     #--------------------------------------------------------------------------------------
     container = OmegaConf.to_container(cfg, resolve=True, enum_to_str=True)
     #----wsy add----------------------------------------------------------------------------------
-    container["common"]["user_dir"]="/home/wangshiyao/wangshiyao_space/fairseq/examples/data2vec"
+    container["common"]["user_dir"]="[PB-DSR DIR]/examples/data2vec"
     #---------------------------------------------------------------------------------------------
     
     cfg = OmegaConf.create(container)

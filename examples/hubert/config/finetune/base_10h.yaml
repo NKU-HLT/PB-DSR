@@ -131,5 +131,5 @@ hydra:
     # 注意 放置ckpt和log的地方
     dir: /your/checkpoints_dir
   sweep:
-    dir: /home/wangshiyao/wangshiyao_space/fairseq/checkpoints
+    dir: [PB-DSR DIR]/checkpoints
     subdir: ${hydra.job.config_name}__${hydra.job.override_dirname}

@@ -9,9 +9,9 @@ pip install -r requirements.txt
 
 # Usage
 ## 训练
-1. 将本目录下“/home/wangshiyao/wangshiyao_space/fairseq”替换为您的路径
+1. 将本目录下“[PB-DSR DIR]”替换PB-DSR实际的代码路径。
 2. 根据需要修改“examples/hubert/config/finetune/base_10h.yaml”中的参数，尤其注意标注了“注意”的地方，需要修改为您的实际路径或下载模型
-3. 训练指令：python fairseq_cli/hydra_train.py --config-dir /home/wangshiyao/wangshiyao_space/fairseq/examples/hubert/config/finetune --config-name base_10h task.data=[YOUR data_dir] task.label_dir=[YOUR label_dir] model.w2v_path=[hubert path]
+3. 训练指令：python fairseq_cli/hydra_train.py --config-dir [PB-DSR DIR]/examples/hubert/config/finetune --config-name base_10h task.data=[YOUR data_dir] task.label_dir=[YOUR label_dir] model.w2v_path=[hubert path]
 (注意，指令中的路径需要修改为您的实际路径)
 
 ## 推理

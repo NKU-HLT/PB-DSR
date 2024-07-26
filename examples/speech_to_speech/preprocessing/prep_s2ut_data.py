@@ -13,7 +13,7 @@ from tqdm import tqdm
 import pandas as pd
 #----------wsy add-------------------------------------------
 import sys
-sys.path.append("/home/wangshiyao/wangshiyao_space/fairseq")
+sys.path.append("[PB-DSR DIR]/")
 #------------------------------------------------------------
 from examples.speech_to_speech.preprocessing.data_utils import (
     gen_config_yaml,
@@ -86,7 +86,7 @@ def main():
         "--source-dir", 
         # required=True, 
         # 注意：此处指的是原始的语音的上一级目录，而不是tts合成的目标语音所在的上一级目录
-        default="/home/wangshiyao/wangshiyao_space/data_aishell/wav/test",
+        default="",
         #----------------------------------------------------------------------------
         type=Path, help="source audio directory"
     )
@@ -95,7 +95,7 @@ def main():
         #---wsy fix---------------------------------------------------------------------------------------------
         # required=True,
         # 注意
-        default="/home/wangshiyao/wangshiyao_space/vits/wsy/aishell_tts/test",
+        default="",
         #----------------------------------------------------------
         type=Path, help="target audio directory"
     )
@@ -113,7 +113,7 @@ def main():
         "--output-root", 
         #----------wsy fix-----------------------------------------------------------------------------------------------------
         # required=True, 
-        default="/home/wangshiyao/wangshiyao_space/fairseq/wsy",
+        default="[PB-DSR DIR]/wsy",
         #-----------------------------------------------------------------------------------------------------------------------
         type=Path, help="output directory"
     )

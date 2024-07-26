@@ -121,5 +121,5 @@ hydra:
         exclude_keys: []
   runtime:
     version: 1.0.7
-    cwd: /llm/nankai/wangshiyao_space/fairseq
+    cwd: [PB-DSR DIR]
   verbose: false
