@@ -22,9 +22,9 @@ pip install -r requirements.txt
     ```
 5. 恢复训练或微调：需要设置 ```fairseq/trainer.py``` 中 ```filename``` 的值（457行代码），设置为加载训练的模型路径。
 
-#### 增加对比学习损失训练时的额外配置 ####
-1. 修改```fairseq/tasks/hubert_pretraining.py```文件中的index为3。(仅使用CTC损失训练时，index=0)
-2. 设置```wsy/hparam.py```中的```use_cl_loss```为```True```。（仅使用CTC损失训练时，```use_cl_loss=False```）
+#### 增加监督对比学习损失训练时的额外配置 ####
+1. 修改 ```fairseq/tasks/hubert_pretraining.py``` 文件中的 ```index=3``` 。(仅使用CTC损失训练时，```index=0``` )。
+2. 设置 ```wsy/hparam.py``` 文件中的 ```use_cl_loss``` 为 ```True```。（仅使用CTC损失训练时，```use_cl_loss=False```）。
 
 ### 使用DSR模型进行推理 ###
 1. 根据实际修改```wsy/config/config.yaml```中的参数，同样注意标注了“**注意**”的地方，需要修改为您的实际配置路径
