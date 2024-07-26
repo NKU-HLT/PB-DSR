@@ -20,7 +20,7 @@ pip install -r requirements.txt
     ```
     python fairseq_cli/hydra_train.py --config-dir [PB-DSR DIR]/examples/hubert/config/finetune --config-name base_10h task.data=[YOUR data_dir] task.label_dir=[YOUR label_dir] model.w2v_path=[hubert path]
     ```
-5. 恢复训练或微调需要设置```fairseq/trainer.py```中```filename```的值（457行代码），设置为加载训练的模型路径。
+5. 恢复训练或微调：需要设置 ```fairseq/trainer.py``` 中 ```filename``` 的值（457行代码），设置为加载训练的模型路径。
 
 #### 增加对比学习损失训练时的额外配置 ####
 1. 修改```fairseq/tasks/hubert_pretraining.py```文件中的index为3。(仅使用CTC损失训练时，index=0)
