@@ -1,0 +1,255 @@
+_name: null
+task:
+  _name: hubert_pretraining
+  single_target: true
+  fine_tuning: true
+  # 词典单元选择
+  labels:
+    # - unit
+    - ltr
+
+  # 注意 这个目录下需要准备test.unit(与tsv中数据数量一致)
+  # data: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/torgo/merge_array_syn_train
+  # data: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/torgo/train
+  # data: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/torgo/test/merge
+  # data: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/torgo/test/wav_arrayMic
+  data: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/data/cdsd
+  normalize: false
+
+decoding:
+  _name: null
+  nbest: 1
+  unitlm: false
+  lmpath: ??? # wsy：这个应该是语言模型路径
+  lexicon: null
+  beam: 50
+  beamthreshold: 50.0
+  beamsizetoken: null
+  wordscore: -1.0
+  unkweight: -.inf
+  silweight: 0.0
+  lmweight: 2.0
+  type: viterbi
+  unique_wer_file: true
+  
+  # 注意 knn要用下面这个！！！
+  # results_path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/totest
+  # results_path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/totest/7.23_cdsd_baseline/result/train
+  # results_path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/totest/7.23_cdsd_baseline/result/valid
+  # results_path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/totest/7.23_cdsd_baseline/result/array_train
+  results_path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/totest/7.23_cdsd_baseline/result/test
+  # results_path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/totest/7.23_cdsd_baseline/result/array_test
+common:
+  _name: null
+  no_progress_bar: false
+  log_interval: 100
+  log_format: null
+  log_file: null
+  aim_repo: null
+  aim_run_hash: null
+  tensorboard_logdir: null
+  wandb_project: null
+  azureml_logging: false
+  seed: 1
+  cpu: false
+  tpu: false
+  bf16: false
+  memory_efficient_bf16: false
+  fp16: false
+  memory_efficient_fp16: false
+  fp16_no_flatten_grads: false
+  fp16_init_scale: 128
+  fp16_scale_window: null
+  fp16_scale_tolerance: 0.0
+  on_cpu_convert_precision: false
+  min_loss_scale: 0.0001
+  threshold_loss_scale: null
+  amp: false
+  amp_batch_retries: 2
+  amp_init_scale: 128
+  amp_scale_window: null
+  user_dir: null
+  empty_cache_freq: 0
+  all_gather_list_size: 16384
+  model_parallel_size: 1
+  quantization_config_path: null
+  profile: false
+  reset_logging: false
+  suppress_crashes: false
+  use_plasma_view: false
+  plasma_path: /tmp/plasma
+common_eval:
+  _name: null
+  # 是best.pt还是last.pt
+  # path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/totest/7.23_cdsd_baseline/checkpoints/checkpoint_last.pt
+  path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/totest/7.23_cdsd_baseline/checkpoints/checkpoint_best.pt
+  results_path: /home/wangshiyao/wangshiyao_space/fairseq/wsy/private/totest/7.23_cdsd_baseline/result
+
+  post_process: none
+  quiet: true
+  model_overrides: '{}'  
+checkpoint:
+  _name: null
+  save_dir: checkpoints
+  restore_file: checkpoint_last.pt
+  continue_once: null
+  finetune_from_model: null
+  reset_dataloader: false
+  reset_lr_scheduler: false
+  reset_meters: false
+  reset_optimizer: false
+  optimizer_overrides: '{}'
+  save_interval: 1
+  save_interval_updates: 0
+  keep_interval_updates: -1
+  keep_interval_updates_pattern: -1
+  keep_last_epochs: -1
+  keep_best_checkpoints: -1
+  no_save: false
+  no_epoch_checkpoints: false
+  no_last_checkpoints: false
+  no_save_optimizer_state: false
+  best_checkpoint_metric: loss
+  maximize_best_checkpoint_metric: false
+  patience: -1
+  checkpoint_suffix: ''
+  checkpoint_shard_count: 1
+  load_checkpoint_on_all_dp_ranks: false
+  write_checkpoints_asynchronousne: false
+  model_parallel_size: ${common.model_parallel_size}
+distributed_training:
+  _name: null
+  #---wsy fix------------------
+  # 使用多卡的设置？
+  # distributed_world_size: 8
+  # distributed_num_procs: 8
+  distributed_world_size: 1
+  distributed_num_procs: 1
+  #----------------------------
+  distributed_rank: 0
+  distributed_backend: nccl
+  distributed_init_method: null
+  distributed_port: -1
+  device_id: 0
+  distributed_no_spawn: false
+  ddp_backend: pytorch_ddp
+  ddp_comm_hook: none
+  bucket_cap_mb: 25
+  fix_batches_to_gpus: false
+  find_unused_parameters: false
+  gradient_as_bucket_view: false
+  fast_stat_sync: false
+  heartbeat_timeout: -1
+  broadcast_buffers: false
+  slowmo_momentum: null
+  slowmo_base_algorithm: localsgd
+  localsgd_frequency: 3
+  nprocs_per_node: 8
+  #-----------wsy fix-------------
+  pipeline_model_parallel: false
+  # pipeline_model_parallel: true
+  #------------------------------
+  pipeline_balance: null
+  pipeline_devices: null
+  pipeline_chunks: 0
+  pipeline_encoder_balance: null
+  pipeline_encoder_devices: null
+  pipeline_decoder_balance: null
+  pipeline_decoder_devices: null
+  pipeline_checkpoint: never
+  zero_sharding: none
+  fp16: ${common.fp16}
+  memory_efficient_fp16: ${common.memory_efficient_fp16}
+  tpu: ${common.tpu}
+  no_reshard_after_forward: false
+  fp32_reduce_scatter: false
+  cpu_offload: false
+  use_sharded_state: false
+  not_fsdp_flatten_parameters: false
+dataset:
+  _name: null
+  num_workers: 1
+  skip_invalid_size_inputs_valid_test: false
+  batch_size: 1
+  #----wsy fix----------------------------
+  # required_batch_size_multiple: 8
+  # max_tokens: 1100000 # 可能是这里的原因
+
+  required_batch_size_multiple: 1
+  max_tokens: null
+  #--------------------------------------
+  required_seq_len_multiple: 1
+  dataset_impl: null
+  data_buffer_size: 10
+  train_subset: train
+  valid_subset: valid
+  combine_valid_subsets: null
+  ignore_unused_valid_subsets: false
+  validate_interval: 1
+  validate_interval_updates: 0
+  validate_after_updates: 0
+  fixed_validation_seed: null
+  disable_validation: false
+  max_tokens_valid: ${dataset.max_tokens}
+  batch_size_valid: ${dataset.batch_size}
+  max_valid_steps: null
+  curriculum: 0
+
+  # lrdwwk
+  ## 注意
+  # gen_subset: removeone_0
+  # gen_subset: removeone_0_v
+  # gen_subset: F01
+  # gen_subset: removeone_1
+  # gen_subset: removeone_1_v
+  # gen_subset: F03
+  # gen_subset: removeone_2
+  # gen_subset: removeone_2_v
+  # gen_subset: F04
+  # gen_subset: removeone_3
+  # gen_subset: removeone_3_v
+  # gen_subset: FC01
+  # gen_subset: removeone_4
+  # gen_subset: removeone_4_v
+  # gen_subset: FC02 
+  # gen_subset: removeone_5
+  # gen_subset: removeone_5_v
+  # gen_subset: FC03
+  # gen_subset: removeone_6
+  # gen_subset: removeone_6_v
+  # gen_subset: M01
+  # gen_subset: removeone_7
+  # gen_subset: removeone_7_v
+  # gen_subset: M02
+  # gen_subset: removeone_8
+  # gen_subset: removeone_8_v
+  # gen_subset: M03
+  # gen_subset: removeone_9
+  # gen_subset: removeone_9_v
+  # gen_subset: M04
+  # gen_subset: removeone_10
+  # gen_subset: removeone_10_v
+  # gen_subset: M05
+  # gen_subset: removeone_11
+  # gen_subset: removeone_11_v
+  # gen_subset: MC01 
+  # gen_subset: removeone_12
+  # gen_subset: removeone_12_v
+  # gen_subset: MC02
+  # gen_subset: removeone_13
+  # gen_subset: removeone_13_v
+  # gen_subset: MC03
+  # gen_subset: removeone_14
+  # gen_subset: removeone_14_v
+  # gen_subset: MC04
+
+  # gen_subset: train
+  # gen_subset: valid
+  gen_subset: test
+
+  num_shards: 1
+  shard_id: 0
+  grouped_shuffling: false
+  update_epoch_batch_itr: ${dataset.grouped_shuffling}
+  update_ordered_indices_seed: false
+is_ax: false
