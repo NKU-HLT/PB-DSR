@@ -1,6 +1,6 @@
 import os
 task="s2st"
-# task="none" # 什么时候需要设置为none?
+# task="none" 
 
 ## asr记录oov
 # record_oov=True
@@ -9,7 +9,7 @@ oov_dir="oov_dir"
 
 ## 数据增强相关
 # 注意
-# addwavaug=True # 这个在推理时可以都试试测试的效果，因为有些工作说训练与测试应该一致，有的说测试时不应该加增强
+# addwavaug=True 
 addwavaug=False
 aug_choose=1 # wavaugment：pitch+混响
 # aug_choose=2 # 速度扰动

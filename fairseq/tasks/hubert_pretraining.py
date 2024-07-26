@@ -43,7 +43,7 @@ class HubertPretrainingConfig(FairseqDataclass):
     #------------wsy add-------------
     chooses=["kws","asr_ch","sn","addcl","asr_en"]
     # 注意
-    index=0 # kws or 交叉熵loss or 最大池化损失（?待定）
+    index=0 # kws or 交叉熵loss
     # index=1 # asr_ch
     # index=2 # sn
     # index=3 # addcl

@@ -31,7 +31,7 @@ task:
   data: /your/data_dir
   fine_tuning: true
   
-  # ltr/unit 根目录
+  # ltr/unit 根目录 注意
   label_dir: /your/label_dir
   normalize: false  # must be consistent with pre-training
 
@@ -65,7 +65,7 @@ optimization:
   # max_update: 25000
   # lr: [2e-5]
   max_update: 9600000
-  # 学习率设置
+  # 学习率设置 注意
   # lr: [0.0000005] # -7
   # lr: [0.000005] # -6
   lr: [0.00005] # -5
