@@ -198,7 +198,7 @@ def parse_args_and_arch(
         args.task="speech_to_speech"
         args.target_code_size=1000
         args.criterion="speech_to_unit"
-        args.save_dir="[PB-DSR DIR]/wsy/training_log"
+        args.save_dir=os.getenv("WORK_DIR")+"/wsy/training_log"
         args.lr=[0.0005]
         args.lr_scheduler="inverse_sqrt"
         args.warmup_updates=10000
@@ -209,7 +209,7 @@ def parse_args_and_arch(
         args.max_target_positions=3000
         args.update_freq=[4]
         args.fp16=True
-        args.tensorboard_logdir="[PB-DSR DIR]/wsy/training_log"
+        args.tensorboard_logdir=os.getenv("WORK_DIR")+"/wsy/training_log"
         args.num_workers=8
     #--------------------------------------------------------------------------------------------------
     # Post-process args.

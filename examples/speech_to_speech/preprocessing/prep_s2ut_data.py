@@ -13,7 +13,7 @@ from tqdm import tqdm
 import pandas as pd
 #----------wsy add-------------------------------------------
 import sys
-sys.path.append("[PB-DSR DIR]/")
+sys.path.append(os.getenv("WORK_DIR")+"/")
 #------------------------------------------------------------
 from examples.speech_to_speech.preprocessing.data_utils import (
     gen_config_yaml,
@@ -111,10 +111,7 @@ def main():
     )
     parser.add_argument(
         "--output-root", 
-        #----------wsy fix-----------------------------------------------------------------------------------------------------
-        # required=True, 
-        default="[PB-DSR DIR]/wsy",
-        #-----------------------------------------------------------------------------------------------------------------------
+        required=True, 
         type=Path, help="output directory"
     )
     parser.add_argument(

@@ -46,9 +46,6 @@ def get_parser():
         type=str,
         #-----wsy fix-------------------------------------------------------------------
         # default=None,
-
-        # 注意
-        default="[PB-DSR DIR]/wsy/data/aishell/test.tsv",
         #--------------------------------------------------------------------------------
         help="Manifest file containing the root dir and file names",
     )
@@ -61,10 +58,6 @@ def get_parser():
     parser.add_argument(
         "--checkpoint_path",
         type=str,
-        #----------wsy add-----------------------------------------------------------------
-        # 注意：
-        default="[PB-DSR DIR]/wsy/dm/chinese-hubert-base.pt",
-        #----------------------------------------------------------------------------------
         help="Pretrained acoustic model checkpoint",
     )
     parser.add_argument(

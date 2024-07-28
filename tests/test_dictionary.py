@@ -12,7 +12,7 @@ import unittest
 import torch
 #--------wsy add----------------------------------------------
 import sys
-sys.path.append("[PB-DSR DIR]/")
+sys.path.append(os.getenv("WORK_DIR")+"/")
 #-------------------------------------------------------------
 from fairseq import tokenizer
 from fairseq.data import Dictionary
@@ -124,7 +124,7 @@ class TestDictionary(unittest.TestCase):
         per_line = 10
         #------------wsy fix--------------------------------------------
         # with tempfile.TemporaryDirectory("test_sampling") as data_dir:
-        data_dir="[PB-DSR DIR]/wsy/test"
+        data_dir=os.getenv("WORK_DIR")+"/wsy/test"
         if True:
         #----------------------------------------------------------------
             """

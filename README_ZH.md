@@ -14,18 +14,16 @@ pip install -r requirements.txt
 2. 参考我们的论文中“Dataset”小节对数据进行划分。
 
 ### 训练DSR模型 ###
-1. **将本仓库代码中 “[PB-DSR DIR]” 替换为PB-DSR仓库所在路径**。
+1. 修改配置文件 ```examples/hubert/config/finetune/base_10h.yaml``` 中的参数，尤其是标注了“**注意**”的地方。
 
-2. 修改配置文件 ```examples/hubert/config/finetune/base_10h.yaml``` 中的参数，尤其是标注了“**注意**”的地方。
+2. 设置Hubert路径：在文件 ```fairseq/models/hubert/hubert_asr.py``` 中设置 ```cfg.w2v_path``` 的值（344行代码）。
 
-3. 设置Hubert路径：在文件 ```fairseq/models/hubert/hubert_asr.py``` 中设置 ```cfg.w2v_path``` 的值（344行代码）。
-
-4. 训练指令：
+3. 训练指令：
     ```
     python fairseq_cli/hydra_train.py --config-dir [PB-DSR DIR]/examples/hubert/config/finetune --config-name base_10h task.data=[YOUR data_dir] task.label_dir=[YOUR label_dir] model.w2v_path=[Hubert path]
     ```
 
-5. 恢复训练或微调：设置 ```fairseq/trainer.py``` 中 ```filename``` 的值（457行代码），设置为加载训练的模型路径。
+4. 恢复训练或微调：设置 ```fairseq/trainer.py``` 中 ```filename``` 的值（457行代码），设置为加载训练的模型路径。
 
 #### 增加监督对比学习损失训练时的额外配置 ####
 1. 修改 ```fairseq/tasks/hubert_pretraining.py``` 文件中的 ```index=3``` 。(仅使用CTC损失训练时，```index=0``` )。

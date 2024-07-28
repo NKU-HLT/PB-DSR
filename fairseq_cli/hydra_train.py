@@ -8,7 +8,7 @@ import logging
 import os
 #-----wsy add-------------------------------------------------
 import sys
-sys.path.append("[PB-DSR DIR]/")
+sys.path.append(os.getenv("WORK_DIR")+"/")
 os.environ["CUDA_VISIBLE_DEVICES"] = "3" # 注意 
 import warnings
 warnings.filterwarnings('ignore')
@@ -33,21 +33,15 @@ def hydra_main(cfg: FairseqConfig) -> float:
 
 def _hydra_main(cfg: FairseqConfig, **kwargs) -> float:
     #------wsy add-------------------------------------------------------------------------------------------------
-    # # 注意： 这里是debug需要的：（实际使用指令训练时需要注释掉
-    # cfg1 = OmegaConf.load("[PB-DSR DIR]/examples/hubert/config/finetune/base_10h.yaml")
-    # # cfg2 = OmegaConf.load("[PB-DSR DIR]/.hydra/config.yaml")
+    # # 注意： 这里是debug需要的：（实际使用指令训练时需要注释掉)
+    # cfg1 = OmegaConf.load(os.getenv("WORK_DIR")+"/examples/hubert/config/finetune/base_10h.yaml")
+    # # cfg2 = OmegaConf.load(os.getenv("WORK_DIR")+"/.hydra/config.yaml")
 
-    # cfg2=OmegaConf.load("[PB-DSR DIR]/wsy/private/training_log/7.23_cdsd_baseline/.hydra/config.yaml") # 使用这个可以解决model的问题
-    # cfg3=OmegaConf.load("[PB-DSR DIR]/wsy/private/training_log/7.23_cdsd_baseline/.hydra/hydra.yaml")
+    # cfg2=OmegaConf.load(os.getenv("WORK_DIR")+"/wsy/training_log/test/.hydra/config.yaml")
+    # cfg3=OmegaConf.load(os.getenv("WORK_DIR")+"/wsy/training_log/test/.hydra/hydra.yaml")
 
     # cfg = OmegaConf.merge(cfg2,cfg1,cfg3)
     # cfg.optimization.stop_min_lr=-1.0
-    # # """
-    # # 报错：omegaconf.errors.MissingMandatoryValue: Missing mandatory value: model
-    # #     但是cfg1中有model值，cfg2中没有，最后merge得到的cfg也没有model
-    # #     查到的解释：OmegaConf.merge()也是以最后输入的config为配置值的最终设置，相当于“后来为先”原则，即时间最顺序最后一个config优先级最高。 
-    # #     OmegaConf.merge()的更新还具有顺序保持的特点，即在参数顺序上时依照“先来为序”的原则，会按照config1的顺序对参数进行排列。
-    # # """
     #--------------------------------------------------------------------------------------------------------------
     add_defaults(cfg)
 

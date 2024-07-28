@@ -143,7 +143,7 @@ class SpeechToSpeechTask(LegacyFairseqTask):
         #--------wsy fix--------------------------------------------------------------------------
         # parser.add_argument("data", help="manifest root path")
         parser.add_argument("--data", 
-                            default="[PB-DSR DIR]/wsy/data/aishell",
+                            default="",
                             help="清单根路径")
         #----------------------------------------------------------------------------------------
         parser.add_argument(
