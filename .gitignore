@@ -143,6 +143,5 @@ outputs
 # 以上是原始fairseq的配置，下方是我的配置
 tmp/
 wsy/private
-wsy/prototype_test.py
 examples/speech_to_speech/generate_waveform_from_code.py
 examples/textless_nlp/gslm/speech2unit/clustering/quantize_with_kmeans.py

@@ -39,19 +39,17 @@ pip install -r requirements.txt
     ```
 
 ### PB-DSR ###
-我们将在2024.7.30 更新PB-DSR详细操作和代码
-
-<!-- #### 支持集抽取特征 ####
-1. 设置```wsy/hparam.py```中的```prepare_datastore=True```以及设置保存特征的目录```o_datastore_dir```
-2. 执行```使用DSR模型进行推理```处的操作
+#### 支持集抽取特征 ####
+1. 设置 ```wsy/hparam.py``` 中的 ```prepare_datastore=True``` 以及保存特征的目录 ```o_datastore_dir``` 。
+2. 执行 ```使用DSR模型进行推理``` 处的操作。
 
 #### 测试集抽取特征 ####
-1. 设置```wsy/hparam.py```中的```prepare_datastore=True```以及设置保存特征的目录```o_datastore_dir```
-2. 执行```使用DSR模型进行推理```处的操作
+1. 设置```wsy/hparam.py```中的```prepare_datastore=True```以及设置保存特征的目录```o_datastore_dir``` 。
+2. 执行```使用DSR模型进行推理```处的操作。
 
-#### 原型分类 ####
-1. 设置```wsy/prototype_test.py```里标注了```注意```的地方
-2. 执行以下指令：可以修改```speaker_name```，```result_dir```；```datastore_dir```和```test_dir```是上方保存支持集和测试集特征的目录
+#### 基于原型的分类 ####
+1. 设置 ```wsy/prototype_test.py``` 里标注了 ```注意``` 的地方。
+2. 执行以下指令：可以修改 ```speaker_name``` ， ```result_dir``` ；```datastore_dir```和```test_dir```是上方保存支持集和测试集特征的目录
     ```
     speaker_name=M04 
     datastore_dir=datastore_dir_path
@@ -59,7 +57,7 @@ pip install -r requirements.txt
     policy=4
     result_dir=result_dir_path
     python wsy/prototype_test.py --choose 1 --ltr_name $speaker_name --datastore_dir $datastore_dir --test_dir $test_dir --policy $policy >> result_dir/${speaker_name}_$policy.txt
-    ``` -->
+    ```
 
 ## 注意 ##
 1. 代码中的注释以中文为主。
@@ -72,4 +70,11 @@ pip install -r requirements.txt
 本工作基于[Fairseq](https://github.com/facebookresearch/fairseq)进行构建，我们修复了原始仓库中的一些bug，使得可以基于Hubert构建构音障碍语音识别（DSR）模型。
 
 ## 引用 ##
-论文目前已提交到arxiv，**2024.7.29会公开**。
+```
+@article{wang2024enhancing,
+  title={Enhancing Dysarthric Speech Recognition for Unseen Speakers via Prototype-Based Adaptation},
+  author={Wang, Shiyao and Zhao, Shiwan and Zhou, Jiaming and Kong, Aobo and Qin, Yong},
+  journal={arXiv preprint arXiv:2407.18461},
+  year={2024}
+}
+```
