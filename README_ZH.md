@@ -1,5 +1,5 @@
 # PB-DSR #
-这是我们的论文“Enhancing Dysarthric Speech Recognition for Unseen Speakers via Prototype-Based Adaptation”的代码实现。
+这是我们的论文[Enhancing Dysarthric Speech Recognition for Unseen Speakers via Prototype-Based Adaptation](https://arxiv.org/abs/2407.18461#)的代码实现。
 
 ## 环境 ##
 ```
