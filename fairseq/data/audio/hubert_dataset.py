@@ -24,7 +24,7 @@ import io
 #--------wsy add------------
 import librosa 
 from wsy import hparam as hp
-import augment
+# import augment
 import random
 import torchaudio
 #---------------------------
@@ -184,9 +184,9 @@ class HubertDataset(FairseqDataset):
                 # self.sr=22050
                 self.sr=16000
                 random_room_size = lambda: np.random.randint(0, 101)  # 此处是一个表达式，不是固定的
-                self.combination = augment.EffectChain() \
-                    .pitch("-q", random_pitch_shift).rate("-q",self.sr) \
-                    .reverb(50, 50, random_room_size).channels() 
+                # self.combination = augment.EffectChain() \
+                #     .pitch("-q", random_pitch_shift).rate("-q",self.sr) \
+                #     .reverb(50, 50, random_room_size).channels() 
         #--------------------------------------------------------------------------------------------------
 
     #------------------------wsy add-------------------------------------------

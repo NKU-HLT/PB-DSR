@@ -1,18 +1,20 @@
 # PB-DSR #
 这是我们的论文[Enhancing Dysarthric Speech Recognition for Unseen Speakers via Prototype-Based Adaptation](https://arxiv.org/abs/2407.18461#)的代码实现。
 
+我们基于该框架修改适配到构音障碍唤醒词识别任务，参加SLT 2024低资源构音障碍唤醒词识别挑战赛获得第二名，关于我们的系统更多实现细节可见论文[PB-LRDWWS SYSTEM FOR THE SLT 2024 LOW-RESOURCE DYSARTHRIA WAKE-UP WORD SPOTTING CHALLENGE](https://arxiv.org/abs/2409.04799)。
+
 ## 创建环境 ##
 ```
 conda create -n PBDSR python=3.9
 conda activate PBDSR
-pip install -r requirements.txt
+bash requirements.sh
 ```
 
 ## 论文复现 ##
 ### 数据配置 ###
 1. 下载[UASPEECH](https://www.isca-archive.org/interspeech_2008/kim08c_interspeech.pdf)数据集。
 
-2. 参考我们的论文中“Dataset”小节对数据进行划分。
+2. 参考我们的论文中“Dataset”小节对数据进行划分，并根据[Fairseq](https://github.com/facebookresearch/fairseq)格式配置元数据（*.tsv,*.ltr以及词典）。
 
 ### 训练DSR模型 ###
 1. 修改配置文件 ```examples/hubert/config/finetune/base_10h.yaml``` 中的参数，尤其是标注了“**注意**”的地方。
@@ -21,8 +23,11 @@ pip install -r requirements.txt
 
 3. 训练指令：
     ```
+    export WORK_DIR=[PB-DSR DIR]
+
     python fairseq_cli/hydra_train.py --config-dir [PB-DSR DIR]/examples/hubert/config/finetune --config-name base_10h task.data=[YOUR data_dir] task.label_dir=[YOUR label_dir] model.w2v_path=[Hubert path]
     ```
+    设置指令中的```[PB-DSR DIR]```为代码目录，```[YOUR data_dir]```和```[YOUR label_dir]```为元数据目录，```[Hubert path]```为Hubert模型路径。
 
 4. 恢复训练或微调：设置 ```fairseq/trainer.py``` 中 ```filename``` 的值（457行代码），设置为加载训练的模型路径。
 

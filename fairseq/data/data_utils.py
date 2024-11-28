@@ -2,7 +2,10 @@
 #
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
-
+#-----wsy add--------------
+import sys
+sys.path.append('/mnt/storage1/wangshiyao_space/fairseq/')
+#-----------------------------------
 try:
     from collections.abc import Iterable
 except ImportError:

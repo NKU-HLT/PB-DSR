@@ -27,12 +27,14 @@ distributed_training:
 task:
   _name: hubert_pretraining
   
-  # tsv 根目录 注意
-  data: /your/data_dir
+  # tsv 元数据根目录 注意
+  # data: /your/data_dir
+  data: /mnt/storage1/wangshiyao_space/PB-DSR/wsy/private/data
   fine_tuning: true
   
-  # ltr/unit 根目录 注意
-  label_dir: /your/label_dir
+  # ltr/unit 元数据根目录 注意
+  # label_dir: /your/label_dir
+  label_dir: /mnt/storage1/wangshiyao_space/PB-DSR/wsy/private/data
   normalize: false  # must be consistent with pre-training
 
   # 任务选择
@@ -66,10 +68,7 @@ optimization:
   # lr: [2e-5]
   max_update: 9600000
   # 学习率设置 注意
-  # lr: [0.0000005] # -7
-  # lr: [0.000005] # -6
   lr: [0.00005] # -5
-  # lr: [0.001] # 没用
   #-------------------
   sentence_avg: true
   update_freq: [1]
@@ -93,7 +92,8 @@ model:
   _name: hubert_ctc
   
   # 使用的预训练hubert模型 注意
-  w2v_path: /your/pretrain_hubert_path
+  # w2v_path: /your/pretrain_hubert_path
+  w2v_path: /mnt/storage1/wangshiyao_space/pbdsr/wsy/chinese-hubert-base.pt
 
   apply_mask: true
   mask_selection: static
@@ -128,8 +128,9 @@ hydra:
           - criterion.wer_lexicon
     config_name: "base_10h" # wsy add
   run:
-    # 注意 放置ckpt和log的地方
-    dir: /your/checkpoints_dir
+    # 注意 expdir
+    # dir: /your/checkpoints_dir
+    dir: /mnt/storage1/wangshiyao_space/PB-DSR/wsy/private/training_log/test
   sweep:
-    dir: [PB-DSR DIR]/checkpoints
+    dir: ./checkpoints
     subdir: ${hydra.job.config_name}__${hydra.job.override_dirname}

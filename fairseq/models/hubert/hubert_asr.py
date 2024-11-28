@@ -341,7 +341,8 @@ class HubertEncoder(FairseqEncoder):
         }
         #----wsy add---------------------------------------------------------------------------
         # 注意 ssl模型的路径
-        cfg.w2v_path="your_ssl_model_path" 
+        # cfg.w2v_path="your_ssl_model_path" 
+        cfg.w2v_path="/mnt/storage1/wangshiyao_space/pbdsr/wsy/chinese-hubert-base.pt" 
         #-------------------------------------------------------------------------------------
         if cfg.w2v_args is None:
             state = checkpoint_utils.load_checkpoint_to_cpu(cfg.w2v_path, arg_overrides)
