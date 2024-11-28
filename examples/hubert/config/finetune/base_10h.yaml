@@ -28,13 +28,11 @@ task:
   _name: hubert_pretraining
   
   # tsv 元数据根目录 注意
-  # data: /your/data_dir
-  data: /mnt/storage1/wangshiyao_space/PB-DSR/wsy/private/data
+  data: /your/data_dir
   fine_tuning: true
   
   # ltr/unit 元数据根目录 注意
-  # label_dir: /your/label_dir
-  label_dir: /mnt/storage1/wangshiyao_space/PB-DSR/wsy/private/data
+  label_dir: /your/label_dir
   normalize: false  # must be consistent with pre-training
 
   # 任务选择
@@ -92,8 +90,7 @@ model:
   _name: hubert_ctc
   
   # 使用的预训练hubert模型 注意
-  # w2v_path: /your/pretrain_hubert_path
-  w2v_path: /mnt/storage1/wangshiyao_space/pbdsr/wsy/chinese-hubert-base.pt
+  w2v_path: /your/pretrain_hubert_path
 
   apply_mask: true
   mask_selection: static
@@ -129,8 +126,7 @@ hydra:
     config_name: "base_10h" # wsy add
   run:
     # 注意 expdir
-    # dir: /your/checkpoints_dir
-    dir: /mnt/storage1/wangshiyao_space/PB-DSR/wsy/private/training_log/test
+    dir: /your/checkpoints_dir
   sweep:
     dir: ./checkpoints
     subdir: ${hydra.job.config_name}__${hydra.job.override_dirname}
