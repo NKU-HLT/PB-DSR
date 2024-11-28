@@ -1,13 +1,14 @@
 # PB-DSR #
 这是我们的论文[Enhancing Dysarthric Speech Recognition for Unseen Speakers via Prototype-Based Adaptation](https://arxiv.org/abs/2407.18461#)的代码实现。
 
-## 环境 ##
+## 创建环境 ##
 ```
-python==3.9
+conda create -n PBDSR python=3.9
+conda activate PBDSR
 pip install -r requirements.txt
 ```
 
-## 使用 ##
+## 论文复现 ##
 ### 数据配置 ###
 1. 下载[UASPEECH](https://www.isca-archive.org/interspeech_2008/kim08c_interspeech.pdf)数据集。
 
